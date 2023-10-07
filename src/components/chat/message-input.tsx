@@ -1,20 +1,16 @@
 import { UseChatHelpers } from 'ai/react'
 import * as React from 'react'
 import Textarea from 'react-textarea-autosize'
+import { useToast } from '@/components/ui/use-toast'
 
 import { Button, buttonVariants } from '@/components/ui/button'
 import { IconArrowElbow, IconPlus } from '../ui/icons'
-import {
-  Tooltip,
-  TooltipContent,
-  TooltipTrigger,
-} from '@/components/ui/tooltip'
+
 import { useEnterSubmit } from '@/lib/hooks/use-enter-submit'
 import { cn } from '@/lib/utils'
 import { useRouter } from 'next/navigation'
-import { Container } from '../Container'
+
 import LoadingDots from '../loading/loading-dots'
-import LoadingSpinner from '../loading/loading-spinner'
 
 export interface PromptProps
   extends Pick<UseChatHelpers, 'input' | 'setInput'> {
@@ -30,6 +26,7 @@ export function MessageInput({
   handleSubmit,
   stop,
 }: PromptProps) {
+  const { toast } = useToast()
   const { formRef, onKeyDown } = useEnterSubmit()
   const inputRef = React.useRef<HTMLTextAreaElement>(null)
   const router = useRouter()

@@ -23,7 +23,10 @@ export default function Chat() {
         <ul role="list" className="mt-8 divide-y divide-black/10">
           {messages.length > 0
             ? messages.map((m) => (
-                <li key={m.id} className="py-4">
+                <li
+                  key={m.id}
+                  className={`px-4 py-4 ${m.role === 'user' ? '' : 'bg-muted'}`}
+                >
                   <div className="flex items-center gap-x-3">
                     {m.role === 'user' ? <IconUser /> : <IconOpenAI />}
                     <h3 className="flex-auto truncate text-sm font-semibold leading-6">
